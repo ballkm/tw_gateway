@@ -8,7 +8,7 @@ import IEEE754
 import compute_crc
 import requests
 import datetime
-from local_setting import *
+from local_settings import *
 
 json_error = 0
 
@@ -49,7 +49,7 @@ def read_holding(slave_address):
     timeout = time.perf_counter()
     status_timeout = 0
     while (ser.inWaiting()) == 0:  # Or: while ser.inWaiting():
-        if (time.perf_counter() - timeout) > 2:
+        if (time.perf_counter() - timeout) > 1:
             print('RS-485 Timeout')
             status_timeout = 1
             break
@@ -410,9 +410,9 @@ def reset_current_coin(slave_address):
     time.sleep(0.5)
 
 
-# ser = serial.Serial(port='COM4', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
+ser = serial.Serial(port=usbport, baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
 # ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
-ser = serial.Serial(port='/dev/cu.usbserial-14130', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
+# ser = serial.Serial(port='/dev/cu.usbserial-14130', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 # ser = serial.Serial(port='/dev/ttyUSB1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 print(ser.name)
 print(ser.is_open)
@@ -420,7 +420,7 @@ print(ser.is_open)
 # read_holding()
 print('Check Device on Network 1-50')
 bus_id_list = []
-for i in range(0x00, 0x05):
+for i in range(0x00, 0x0A):
     print(i)
     if read_holding(i) is not 0:
         print('bus ID:' + str(i) + ' Available')
