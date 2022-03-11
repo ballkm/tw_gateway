@@ -9,8 +9,8 @@ import compute_crc
 import requests
 import datetime
 from local_setting import *
-json_error = 0
 
+json_error = 0
 
 
 def read_holding(slave_address):
