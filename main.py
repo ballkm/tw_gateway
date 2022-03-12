@@ -160,6 +160,7 @@ def request_qr(slave_address, amount, strMac_id, pg_mode):
 
 def write_control(slave_address, select_program_number, program_option1, program_option2, program_option3,
                   input_number_of_coin, put_start, server_action_wash):
+    print('Control Start')
     time.sleep(0.5)
     # write_control(machine_data[0], program_mode, option_wash, 0x00, 0x00, action_price, 0x00, server_action)
     # slave_address = 0x01
