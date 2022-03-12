@@ -12,7 +12,6 @@ from local_settings import *
 
 json_error = 0
 
-
 def read_holding(slave_address):
     # = 0x01
     function = 0x03
@@ -422,7 +421,7 @@ print('Check Device on Network 1-50')
 bus_id_list = []
 for i in range(0x00, 0x0A):
     print(i)
-    if read_holding(i) is not 0:
+    if read_holding(i) != 0:
         print('bus ID:' + str(i) + ' Available')
         bus_id_list.append(i)
     else:
@@ -431,7 +430,7 @@ for i in range(0x00, 0x0A):
 while True:
     for i in bus_id_list:
         machine_data = read_holding(i)
-        if machine_data is not 0:
+        if machine_data != 0:
             sendDataToServer(machine_data)
             if machine_data[7] > 0:
                 send_coin(machine_data)
