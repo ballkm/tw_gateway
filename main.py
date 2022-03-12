@@ -256,7 +256,7 @@ def write_qr(slave_address, qr_string):
 def sendDataToServer(machine_data):
     # print(type(machine_data))
     strJson = ''
-    machine_no = machine_data[1]
+    machine_no = str(machine_data[1])
     machine_type = machine_data[2]
     machine_status = machine_data[3]
     machine_actionby = ''
