@@ -444,7 +444,7 @@ while True:
     '''
 
 while True:
-    machine_data = read_holding(0x04)
+    machine_data = read_holding(0x03)
     if machine_data != 0:
         sendDataToServer(machine_data)
         if machine_data[7] > 0:
