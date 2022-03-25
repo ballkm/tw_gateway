@@ -450,6 +450,7 @@ while True:
         if machine_data[7] > 0:
             send_coin(machine_data)
         print(machine_data)
+    time.sleep(1)
 
 
 # slave_address = 0x01
