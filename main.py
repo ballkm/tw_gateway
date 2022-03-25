@@ -12,6 +12,7 @@ from local_settings import *
 
 json_error = 0
 
+
 def read_holding(slave_address):
     # = 0x01
     function = 0x03
@@ -48,7 +49,7 @@ def read_holding(slave_address):
     timeout = time.perf_counter()
     status_timeout = 0
     while (ser.inWaiting()) == 0:  # Or: while ser.inWaiting():
-        if (time.perf_counter() - timeout) > 5:
+        if (time.perf_counter() - timeout) > 2:
             print('RS-485 Timeout')
             status_timeout = 1
             break
@@ -422,12 +423,13 @@ print('Check Device on Network 1-50')
 bus_id_list = []
 for i in range(0x00, 0x32):
     print(i)
-
-    if read_holding(i) != 0:
-        print('bus ID:' + str(i) + ' Available')
-        bus_id_list.append(i)
-    else:
-        print('bus ID:' + str(i) + ' Not Found')
+    for j in range(0, 5):
+        if read_holding(i) != 0:
+            print('bus ID:' + str(i) + ' Available')
+            bus_id_list.append(i)
+            break
+        else:
+            print('bus ID:' + str(i) + ' Not Found')
 
 while True:
     for i in bus_id_list:
