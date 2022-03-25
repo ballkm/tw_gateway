@@ -419,6 +419,7 @@ print(ser.name)
 print(ser.is_open)
 
 # read_holding()
+'''
 print('Check Device on Network 1-50')
 bus_id_list = []
 for i in range(0x00, 0x32):
@@ -440,6 +441,16 @@ while True:
                 send_coin(machine_data)
             print(machine_data)
     # time.sleep(1)
+    '''
+
+while True:
+    machine_data = read_holding(0x04)
+    if machine_data != 0:
+        sendDataToServer(machine_data)
+        if machine_data[7] > 0:
+            send_coin(machine_data)
+        print(machine_data)
+
 
 # slave_address = 0x01
 # function = 0x03
