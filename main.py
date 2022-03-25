@@ -420,7 +420,7 @@ print(ser.is_open)
 # read_holding()
 print('Check Device on Network 1-50')
 bus_id_list = []
-for i in range(0x00, 0x0A):
+for i in range(0x01, 0x32):
     print(i)
     if read_holding(i) != 0:
         print('bus ID:' + str(i) + ' Available')
