@@ -49,7 +49,7 @@ def read_holding(slave_address):
     timeout = time.perf_counter()
     status_timeout = 0
     while (ser.inWaiting()) == 0:  # Or: while ser.inWaiting():
-        if (time.perf_counter() - timeout) > 2:
+        if (time.perf_counter() - timeout) > 1:
             print('RS-485 Timeout')
             status_timeout = 1
             break
