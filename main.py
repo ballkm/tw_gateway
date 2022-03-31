@@ -133,8 +133,8 @@ def read_holding(slave_address):
         return [slave_address, strmac_id, machine_type, machine_status, machine_actionby, time_minutes, time_seconds,
                 current_coin, \
                 total_current_coin, current_running_program_number, wifi_connect_success]
-    else:
-        return 0
+    # else:
+    #     return 0
 
 def request_qr(slave_address, amount, strMac_id, pg_mode):
     payload = {'action': 'scb_test',
