@@ -133,8 +133,8 @@ def read_holding(slave_address):
         return [slave_address, strmac_id, machine_type, machine_status, machine_actionby, time_minutes, time_seconds,
                 current_coin, \
                 total_current_coin, current_running_program_number, wifi_connect_success]
-    # else:
-    #     return 0
+    else:
+        return 0
 
 def request_qr(slave_address, amount, strMac_id, pg_mode):
     payload = {'action': 'scb_test',
@@ -426,7 +426,7 @@ print('Check Device on Network 1-20')
 bus_id_list = []
 for i in range(0x00, 0x14):
     print(i)
-    for j in range(0, 2):
+    for j in range(0, 5):
         if read_holding(i) != 0:
             print('bus ID:' + str(i) + ' Available')
             bus_id_list.append(i)
