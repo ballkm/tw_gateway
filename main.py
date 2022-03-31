@@ -437,6 +437,8 @@ while True:
     for i in bus_id_list:
         machine_data = read_holding(i)
         if machine_data != 0:
+            print(type(machine_data))
+            print(machine_data)
             sendDataToServer(machine_data)
             if machine_data[7] > 0:
                 send_coin(machine_data)
