@@ -258,7 +258,8 @@ def write_qr(slave_address, qr_string):
 def sendDataToServer(machine_data):
     # print(type(machine_data))
     strJson = ''
-    machine_no = str(machine_data[1])
+    # machine_no = str(machine_data[1])
+    machine_no = machine_data[1]
     machine_type = machine_data[2]
     machine_status = machine_data[3]
     machine_actionby = ''
@@ -424,7 +425,7 @@ print('Check Device on Network 1-50')
 bus_id_list = []
 for i in range(0x00, 0x32):
     print(i)
-    for j in range(0, 5):
+    for j in range(0, 2):
         if read_holding(i) != 0:
             print('bus ID:' + str(i) + ' Available')
             bus_id_list.append(i)
