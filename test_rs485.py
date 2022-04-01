@@ -23,7 +23,6 @@ start_address_low = 0x00
 number_point_high = 0x00
 number_point_low = 0x0F
 
-# = 0x01
 function = 0x03
 start_address_high = 0x00
 start_address_low = 0x00
