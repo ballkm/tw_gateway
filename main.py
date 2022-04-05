@@ -310,7 +310,7 @@ def sendDataToServer(machine_data):
         print('json:', err)
         pass
     if json_error == 0:
-        print(strJsonData)
+        # print(strJsonData)
         # print('action:', strJsonData['action'])
         # print('action_price:', strJsonData['action_price'])
         # print('programs_mode:', strJsonData['programs_mode'])
