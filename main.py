@@ -54,6 +54,7 @@ def read_holding(slave_address):
             status_timeout = 1
             break
     if status_timeout == 1:
+        print('return 0')
         return 0
     countLoop = 0
     quantity = 0
