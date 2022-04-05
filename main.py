@@ -424,7 +424,7 @@ print(ser.is_open)
 # read_holding()
 
 print('Check Device on Network 1-20')
-bus_id_list = []
+# bus_id_list = []
 # for i in range(0x00, 0x14):
 #     print(i)
 #     for j in range(0, 3):
