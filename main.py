@@ -425,15 +425,15 @@ print(ser.is_open)
 
 print('Check Device on Network 1-20')
 bus_id_list = []
-for i in range(0x00, 0x14):
-    print(i)
-    for j in range(0, 3):
-        if read_holding(i) != 0:
-            print('bus ID:' + str(i) + ' Available')
-            bus_id_list.append(i)
-            break
-        else:
-            print('bus ID:' + str(i) + ' Not Found')
+# for i in range(0x00, 0x14):
+#     print(i)
+#     for j in range(0, 3):
+#         if read_holding(i) != 0:
+#             print('bus ID:' + str(i) + ' Available')
+#             bus_id_list.append(i)
+#             break
+#         else:
+#             print('bus ID:' + str(i) + ' Not Found')
 
 while True:
     for i in bus_id_list:
