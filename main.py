@@ -258,7 +258,7 @@ def write_qr(slave_address, qr_string):
 
 
 def sendDataToServer(machine_data):
-    print(type(machine_data[1]))
+    # print(type(machine_data[1]))
     strJson = ''
     # machine_no = str(machine_data[1])
     machine_no = machine_data[1]
@@ -311,10 +311,10 @@ def sendDataToServer(machine_data):
         pass
     if json_error == 0:
         print(strJsonData)
-        print('action:', strJsonData['action'])
-        print('action_price:', strJsonData['action_price'])
-        print('programs_mode:', strJsonData['programs_mode'])
-        print('option_wash:', strJsonData['option_wash'])
+        # print('action:', strJsonData['action'])
+        # print('action_price:', strJsonData['action_price'])
+        # print('programs_mode:', strJsonData['programs_mode'])
+        # print('option_wash:', strJsonData['option_wash'])
         server_action = int(strJsonData['action'])
         action_price = int(strJsonData['action_price'])
         program_mode = int(strJsonData['programs_mode'])
@@ -439,12 +439,12 @@ while True:
     for i in bus_id_list:
         machine_data = read_holding(i)
         if machine_data != 0:
-            print(type(machine_data))
+            # print(type(machine_data))
             print(machine_data)
             sendDataToServer(machine_data)
             if machine_data[7] > 0:
                 send_coin(machine_data)
-            print(machine_data)
+            # print(machine_data)
     # time.sleep(1)
 
 '''
