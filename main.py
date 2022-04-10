@@ -415,7 +415,7 @@ def reset_current_coin(slave_address):
     time.sleep(0.5)
 
 
-ser = serial.Serial(port=usbport, baudrate=1200, bytesize=8, parity='N', stopbits=1, timeout=2)
+ser = serial.Serial(port=usbport, baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
 # ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 # ser = serial.Serial(port='/dev/cu.usbserial-14130', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 # ser = serial.Serial(port='/dev/ttyUSB1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
