@@ -108,7 +108,8 @@ def read_holding(slave_address):
         # Request QR
         strmac_id = ''
         for i in range(2, 12):
-            strmac_id = strmac_id + chr(int.from_bytes(data_responce[i], byteorder='big'))
+            if int.from_bytes(data_responce[i], byteorder='big') != 0x00:
+                strmac_id = strmac_id + chr(int.from_bytes(data_responce[i], byteorder='big'))
 
         if int.from_bytes(data_responce[27], byteorder='big') == 0x01:
             print("request_qr")
@@ -383,6 +384,43 @@ def send_coin(machine_data):
         reset_current_coin(machine_data[0])
 
 
+def send_coin_adaline(machine_data):
+    machine_no = machine_data[1]
+    machine_type = machine_data[2]
+    machine_coin = machine_data[7]
+    print('/////// coin adaline //////')
+    payload = {'coin_value': machine_coin,
+               'coin_trigger': 485}
+    headers = {'Content-type': 'application/json'}
+    # url_add_coin = url_add_coin + '/trendywash/apix/public/api/wm/add_coin/' + str(machine_no)
+    print(url_add_coin)
+    print(json.dumps(payload))
+    date_time_coin = datetime.datetime.now()
+    strDatetime = str(date_time_coin)
+
+    print('-----server-----')
+    try:
+        r = requests.post(url_add_coin + '/trendywash/apix/public/api/wm/add_coin/' + str(machine_no),
+                          data=json.dumps(payload), headers=headers, timeout=5)
+    except requests.exceptions.ConnectionError as err:
+        print(err)
+    except requests.exceptions.HTTPError as err:
+        print(err)
+    except requests.exceptions.Timeout as err:
+        print(err)
+    except requests.exceptions.TooManyRedirects as err:
+        print(err)
+    except requests.exceptions.RequestException as err:
+        print(err)
+
+    print('-----end server-----')
+    print(r.text)
+    status_code = r.status_code
+    print(status_code)
+    strJson = r.text
+    print('/////// End coin //////')
+
+
 def reset_current_coin(slave_address):
     time.sleep(0.5)
     # slave_address = 0x01
@@ -417,7 +455,7 @@ def reset_current_coin(slave_address):
 
 ser = serial.Serial(port=usbport, baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
 # ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
-# ser = serial.Serial(port='/dev/cu.usbserial-14130', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
+# ser = serial.Serial(port='/dev/cu.usbserial-AD0JZI5B', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 # ser = serial.Serial(port='/dev/ttyUSB1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 print(ser.name)
 print(ser.is_open)
@@ -425,16 +463,17 @@ print(ser.is_open)
 # read_holding()
 
 print('Check Device on Network 1-20')
-# bus_id_list = []
-# for i in range(0x00, 0x14):
-#     print(i)
-#     for j in range(0, 3):
-#         if read_holding(i) != 0:
-#             print('bus ID:' + str(i) + ' Available')
-#             bus_id_list.append(i)
-#             break
-#         else:
-#             print('bus ID:' + str(i) + ' Not Found')
+
+bus_id_list = []
+for i in range(0x00, 0x14):
+    print(i)
+    for j in range(0, 3):
+        if read_holding(i) != 0:
+            print('bus ID:' + str(i) + ' Available')
+            bus_id_list.append(i)
+            break
+        else:
+            print('bus ID:' + str(i) + ' Not Found')
 
 while True:
     for i in bus_id_list:
@@ -445,6 +484,7 @@ while True:
             sendDataToServer(machine_data)
             if machine_data[7] > 0:
                 send_coin(machine_data)
+                send_coin_adaline(machine_data)
             # print(machine_data)
     # time.sleep(1)
 
