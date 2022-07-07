@@ -414,7 +414,7 @@ def send_coin_adaline(machine_data):
         print(err)
 
     print('-----end server-----')
-    # print(r.text)
+    print(r.text)
     status_code = r.status_code
     print(status_code)
     strJson = r.text
@@ -489,7 +489,7 @@ while True:
             sendDataToServer(machine_data)
             if machine_data[7] > 0:
                 send_coin(machine_data)
-                send_coin_adaline(machine_data)
+                # send_coin_adaline(machine_data)
             # print(machine_data)
     # time.sleep(1)
 
