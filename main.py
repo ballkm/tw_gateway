@@ -37,7 +37,7 @@ def read_holding(slave_address):
 
     # print(data_request_byte)
 
-    time.sleep(0.5)
+    # time.sleep(0.1)
     # while True:
     timecheck = time.perf_counter()
     for i in range(0, len(data_request_byte)):
@@ -462,10 +462,11 @@ print(ser.is_open)
 
 # read_holding()
 
-print('Check Device on Network 1-20')
+print('Check Device on Network 1-10')
 
 bus_id_list = []
-for i in range(0x00, 0x14):
+
+for i in range(0x00, 0x0A):
     print(i)
     for j in range(0, 3):
         if read_holding(i) != 0:
@@ -475,9 +476,13 @@ for i in range(0x00, 0x14):
         else:
             print('bus ID:' + str(i) + ' Not Found')
 
+id_counter = len(bus_id_list)
+time_id_loop = 1/id_counter
+print(time_id_loop)
 while True:
     for i in bus_id_list:
         machine_data = read_holding(i)
+        time.sleep(time_id_loop)
         if machine_data != 0:
             # print(type(machine_data))
             print(machine_data)

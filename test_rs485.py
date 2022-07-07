@@ -10,9 +10,9 @@ import requests
 import datetime
 
 # ser = serial.Serial(port=usbport, baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=2)
-# ser = serial.Serial(port='/dev/ttyUSB1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
+ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 # ser = serial.Serial(port='/dev/cu.usbserial-14130', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
-ser = serial.Serial(port='COM4', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
+# ser = serial.Serial(port='COM6', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1)
 print(ser.name)
 print(ser.is_open)
 
@@ -54,8 +54,10 @@ for i in range(0, len(data_request)):
 time.sleep(1)
 while True:
     timecheck = time.perf_counter()
+    # ser.write(b'----------')
     for i in range(0, len(data_request_byte)):
         ser.write(data_request_byte[i])
+    # ser.write(b'----------')
     while ser.inWaiting():  # Or: while ser.inWaiting():
         print(ser.read())
     time.sleep(5)
