@@ -318,10 +318,10 @@ def sendDataToServer(machine_data):
         # print('programs_mode:', strJsonData['programs_mode'])
         # print('option_wash:', strJsonData['option_wash'])
         server_action = int(strJsonData['action'])
-        action_price = int(strJsonData['action_price'])
-        program_mode = int(strJsonData['programs_mode'])
-        option_wash = int(strJsonData['option_wash'])
         if server_action == 1:
+            action_price = int(strJsonData['action_price'])
+            program_mode = int(strJsonData['programs_mode'])
+            option_wash = int(strJsonData['option_wash'])
             write_control(machine_data[0], program_mode, option_wash, 0x00, 0x00, action_price, 0x00, server_action)
 
 
