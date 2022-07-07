@@ -414,7 +414,7 @@ def send_coin_adaline(machine_data):
         print(err)
 
     print('-----end server-----')
-    print(r.text)
+    # print(r.text)
     status_code = r.status_code
     print(status_code)
     strJson = r.text
