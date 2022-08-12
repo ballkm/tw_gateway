@@ -22,4 +22,7 @@ print(ser.is_open)
 print('Start Bomb')
 
 while True:
-    ser.write(0xff)
+    ser.write(0x11)
+    ser.write(0x55)
+    ser.write(0xAA)
+    ser.write(0xFF)
